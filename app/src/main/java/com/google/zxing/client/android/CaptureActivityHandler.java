@@ -70,9 +70,6 @@ public final class CaptureActivityHandler extends Handler {
     @Override
     public void handleMessage(Message message) {
         switch (message.what) {
-            case R.id.restart_preview:
-                restartPreviewAndDecode();
-                break;
             case R.id.decode_succeeded:
                 state = State.SUCCESS;
                 activity.handleDecode((Result) message.obj);
