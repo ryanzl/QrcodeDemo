@@ -81,7 +81,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         Intent intent = new Intent();
         intent.setClass(activity, CaptureActivity.class);
         intent.setAction(Intents.Scan.ACTION);
-        intent.putExtra(Intents.Scan.MODE, Intents.Scan.QR_CODE_MODE);
+        intent.putExtra(Intents.Scan.MODE, Intents.Scan.ONE_D_MODE);
         activity.startActivityForResult(intent, requestCode);
     }
 

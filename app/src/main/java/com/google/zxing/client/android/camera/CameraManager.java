@@ -44,8 +44,8 @@ public final class CameraManager {
 
     private static final int MIN_FRAME_WIDTH = 240;
     private static final int MIN_FRAME_HEIGHT = 240;
-    private static final int MAX_FRAME_WIDTH = 2560;
-    private static final int MAX_FRAME_HEIGHT = 1440;
+    private static final int MAX_FRAME_WIDTH = 3840;
+    private static final int MAX_FRAME_HEIGHT = 2160;
 
     private final Context context;
     private final CameraConfigurationManager configManager;

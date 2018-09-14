@@ -44,4 +44,5 @@
     <string name="preferences_play_beep_title">播放提示音</string>
     <string name="preferences_scanning_title">条码类型</string>
     <string name="preferences_vibrate_title">振动</string>
+    <string name="msg_encode_contents_failed">无法生成条码。</string>
 </resources>
