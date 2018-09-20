@@ -34,6 +34,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.android.qrcodedemo.R;
+import com.android.qrcodedemo.app.BaseActivity;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
@@ -52,11 +53,11 @@ import java.util.Map;
  * @author dswitkin@google.com (Daniel Switkin)
  * @author Sean Owen
  */
-public final class CaptureActivity extends Activity implements SurfaceHolder.Callback {
+public final class CaptureActivity extends BaseActivity implements SurfaceHolder.Callback {
 
     private static final String TAG = CaptureActivity.class.getSimpleName();
 
-    private static final long DEFAULT_INTENT_RESULT_DURATION_MS = 1000L;
+    private static final long DEFAULT_INTENT_RESULT_DURATION_MS = 200L;
 
     private CameraManager cameraManager;
     private CaptureActivityHandler handler;
@@ -90,17 +91,25 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     }
 
     @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
-
+    protected int getContentView() {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        setContentView(R.layout.activity_capture);
+        return R.layout.activity_capture;
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
 
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
         beepManager = new BeepManager(this);
         ambientLightManager = new AmbientLightManager(this);
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
     }
 
     @Override
