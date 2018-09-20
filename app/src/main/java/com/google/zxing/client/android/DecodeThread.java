@@ -16,10 +16,8 @@
 
 package com.google.zxing.client.android;
 
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
-import android.preference.PreferenceManager;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
@@ -62,11 +60,8 @@ final class DecodeThread extends Thread {
 
         // The prefs can't change while the thread is running, so pick them up once here.
         if (decodeFormats == null || decodeFormats.isEmpty()) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
             decodeFormats = EnumSet.noneOf(BarcodeFormat.class);
-            if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_QR, true)) {
-                decodeFormats.addAll(DecodeFormatManager.QR_CODE_FORMATS);
-            }
+            decodeFormats.addAll(DecodeFormatManager.QR_CODE_FORMATS);
         }
         hints.put(DecodeHintType.POSSIBLE_FORMATS, decodeFormats);
 

@@ -102,10 +102,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.google.zxing.client.android.PreferencesActivity"
-            android:label="@string/preferences_name"
-            android:stateNotNeeded="true" />
-        <activity android:name=".ui.CreateQrCodeActivity"></activity>
+            android:name=".ui.CreateQrCodeActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

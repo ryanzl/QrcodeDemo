@@ -47,7 +47,6 @@ public final class CameraManager {
     private static final int MAX_FRAME_WIDTH = 3840;
     private static final int MAX_FRAME_HEIGHT = 2160;
 
-    private final Context context;
     private final CameraConfigurationManager configManager;
     private OpenCamera camera;
     private AutoFocusManager autoFocusManager;
@@ -65,7 +64,6 @@ public final class CameraManager {
     private final PreviewCallback previewCallback;
 
     public CameraManager(Context context) {
-        this.context = context;
         this.configManager = new CameraConfigurationManager(context);
         previewCallback = new PreviewCallback(configManager);
     }
@@ -148,7 +146,7 @@ public final class CameraManager {
         if (theCamera != null && !previewing) {
             theCamera.getCamera().startPreview();
             previewing = true;
-            autoFocusManager = new AutoFocusManager(context, theCamera.getCamera());
+            autoFocusManager = new AutoFocusManager(theCamera.getCamera());
         }
     }
 
@@ -182,7 +180,7 @@ public final class CameraManager {
             }
             configManager.setTorch(theCamera.getCamera(), newSetting);
             if (wasAutoFocusManager) {
-                autoFocusManager = new AutoFocusManager(context, theCamera.getCamera());
+                autoFocusManager = new AutoFocusManager(theCamera.getCamera());
                 autoFocusManager.start();
             }
         }
