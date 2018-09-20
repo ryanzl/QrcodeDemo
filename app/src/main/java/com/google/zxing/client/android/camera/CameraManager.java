@@ -211,7 +211,7 @@ public final class CameraManager {
      *
      * @return The rectangle to draw on screen in window coordinates.
      */
-    public synchronized Rect getFramingRect() {
+    private synchronized Rect getFramingRect() {
         if (framingRect == null) {
             if (camera == null) {
                 return null;

@@ -18,7 +18,9 @@ public class MainActivity extends BaseActivity {
     private static final int REQUEST_CODE_QRCODE = 100;
 
     private PermissionsHelper mPermissionsHelper;
+    private TextView tvCreateQrCode;
     private TextView tvScan;
+    private TextView tvText;
 
     @Override
     protected int getContentView() {
@@ -42,7 +44,10 @@ public class MainActivity extends BaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
+
+        tvCreateQrCode = findViewById(R.id.tv_create_qr_code);
         tvScan = findViewById(R.id.tv_scan);
+        tvText = findViewById(R.id.tv_text);
 
         mPermissionsHelper.requestPermissions(this);
     }
@@ -60,7 +65,7 @@ public class MainActivity extends BaseActivity {
             if (REQUEST_CODE_QRCODE == requestCode) {
                 if (data != null) {
                     final String text = data.getStringExtra(Intents.Scan.RESULT);
-                    ToastMaster.show(text);
+                    tvText.setText(text);
                 }
             }
         } else if (RESULT_CANCELED == resultCode) {
@@ -72,6 +77,9 @@ public class MainActivity extends BaseActivity {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
+                case R.id.tv_create_qr_code:
+                    CreateQrCodeActivity.show(MainActivity.this);
+                    break;
                 case R.id.tv_scan:
                     CaptureActivity.show(MainActivity.this, REQUEST_CODE_QRCODE);
                     break;
@@ -82,6 +90,7 @@ public class MainActivity extends BaseActivity {
     private PermissionsHelper.OnPermissionsResult mPermissionsResult = new PermissionsHelper.OnPermissionsResult() {
         @Override
         public void allPermissionGranted() {
+            tvCreateQrCode.setOnClickListener(mClick);
             tvScan.setOnClickListener(mClick);
         }
 
